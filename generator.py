@@ -6,7 +6,11 @@ def timerDelay(timer,mode,delayInMilliSeconds):
     TMOD = f'{mode}'+'0'
 
   delayInMilliSeconds = round(delayInMilliSeconds*1000/1.085)
+  timerValue = 65536 - delayInMilliSeconds
+  if (timerValue<0):
+      return "Value out of Bound"
   timerValue = bin(65536 - delayInMilliSeconds).replace("0b","")
+  
   
   TH = timerValue[0:8]
   TL = timerValue[8:16]
@@ -49,8 +53,8 @@ AGAIN: JNB TF{timer},AGAIN
 
 
 # Testing
-delay1 = timerDelay(0,1,1)
-delay2 = timerDelay(1,2,2)
+delay1 = timerDelay(0,1,100)
+delay2 = timerDelay(1,2,200)
 print(delay1)
 print("")
 print(delay2)
