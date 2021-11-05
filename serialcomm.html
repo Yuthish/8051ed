@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
         integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,21 +26,23 @@
 <body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
     <br>
     <section class='transmission'>
-        <h1 style="font-family:  'Montserrat', sans-serif;color:white;" class="ui center aligned header">Serial Communication Generator
+        <h1 style="font-family:  'Montserrat', sans-serif;color:white;" class="ui center aligned header">Serial
+            Communication Generator
         </h1>
         <br>
         <br>
         <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
 
-            <div class="ui stackable two column  divided inverted black grid" >
+            <div class="ui stackable two column  divided inverted black grid">
 
                 <div class="column ">
 
                     <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
-                       Txd Generator</h1>
+                        Txd Generator</h1>
                     <br>
 
-                    <form class="ui inverted  form" id='txdForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+                    <form class="ui inverted  form" id='txdForm'
+                        style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
 
                         <div class="ui stackable two column padded divided inverted black grid">
                             <div class='five wide column'>
@@ -47,7 +52,7 @@
 
                             <div class=' column'>
                                 <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
-                                    id="baudRateFieldTxd"  required>
+                                    id="baudRateFieldTxd" required>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
                                         disabled value="">---Select Baud Rate---</option>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
@@ -78,13 +83,14 @@
 
                             <div class=' column'>
                                 <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
-                                 type="text" id="serialCommDataField" placeholder="Enter data for transmission " required>
+                                    type="text" id="serialCommDataField" placeholder="Enter data for transmission "
+                                    required>
                             </div>
 
                         </div>
 
-                       
-                       
+
+
                         <div class="ui inverted center aligned segment">
                             <input class="ui linkedin center compact  button" type="button" id="txdGenerateButton"
                                 value="Generate"
@@ -100,12 +106,13 @@
                 <div class="column">
                     <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
                         Generated Snippet</h1>
-                        <br>
-                    
-                        <div class="ui inverted left aligned segment" >
-                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui header" id='txdSnippet'></h4>
-                        </div>
-                        
+                    <br>
+
+                    <div class="ui inverted left aligned segment">
+                        <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui header"
+                            id='txdSnippet'></h4>
+                    </div>
+
                 </div>
 
             </div>
@@ -117,20 +124,21 @@
 
 
     <section class='receiving'>
-        
+
         <br>
         <br>
         <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
 
-            <div class="ui stackable two column  divided inverted black grid" >
+            <div class="ui stackable two column  divided inverted black grid">
 
                 <div class="column ">
 
                     <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
-                       Rxd Generator</h1>
+                        Rxd Generator</h1>
                     <br>
 
-                    <form class="ui inverted  form" id='rxdForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+                    <form class="ui inverted  form" id='rxdForm'
+                        style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
 
                         <div class="ui stackable two column padded divided inverted black grid">
                             <div class='five wide column'>
@@ -140,7 +148,7 @@
 
                             <div class=' column'>
                                 <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
-                                    id="baudRateFieldRxd"  required>
+                                    id="baudRateFieldRxd" required>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
                                         disabled value="">---Select Baud Rate---</option>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
@@ -171,7 +179,7 @@
 
                             <div class=' column'>
                                 <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
-                                    id="receivingPortFieldRxd"  required>
+                                    id="receivingPortFieldRxd" required>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
                                         disabled value="">---Select Receiving Port ---</option>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
@@ -182,15 +190,15 @@
                                         value="P2">P2</option>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
                                         value="P3">P3 (Not Recommended)</option>
-                                    
+
                                 </select>
 
                             </div>
 
                         </div>
 
-                       
-                       
+
+
                         <div class="ui inverted center aligned segment">
                             <input class="ui linkedin center compact  button" type="button" id="rxdGenerateButton"
                                 value="Generate"
@@ -206,12 +214,13 @@
                 <div class="column">
                     <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
                         Generated Snippet</h1>
-                        <br>
-                    
-                        <div class="ui inverted left aligned segment" >
-                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui header" id='rxdSnippet'></h4>
-                        </div>
-                        
+                    <br>
+
+                    <div class="ui inverted left aligned segment">
+                        <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui header"
+                            id='rxdSnippet'></h4>
+                    </div>
+
                 </div>
 
             </div>
@@ -219,70 +228,10 @@
         </div>
 
     </section>
+    <footer style="color: white; text-align: center;margin-top: 4.5%;;"> <strong>Contributions Welcomed <a
+                href="https://github.com/Yuthish/8051ed">@ github</a> <br> Copyright © 2021, Yuthirshta Prasad T
+            </i> </strong> </footer>
     <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-    
-
 
     <script type="text/javascript" src="generator.js">
 

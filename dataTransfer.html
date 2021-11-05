@@ -12,7 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
         integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,13 +26,14 @@
 <body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
     <br>
     <section>
-        <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">Data Transfer Generation
+        <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">Data Transfer
+            Generation
         </h1>
         <br>
         <br>
         <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
 
-            <div class="ui stackable two column  divided inverted black grid" >
+            <div class="ui stackable two column  divided inverted black grid">
 
                 <div class="column ">
 
@@ -37,7 +41,8 @@
                         Generator</h1>
                     <br>
 
-                    <form class="ui inverted  form" id='dataTransferForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+                    <form class="ui inverted  form" id='dataTransferForm'
+                        style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
 
                         <div class="ui stackable two column padded divided inverted black grid">
                             <div class='four wide column'>
@@ -47,8 +52,9 @@
 
                             <div class=' column'>
                                 <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
-                                    min="0" type="number" id="romAddrField" placeholder="Enter ROM Starting Address " required>
-                               
+                                    min="0" type="number" id="romAddrField" placeholder="Enter ROM Starting Address "
+                                    required>
+
                             </div>
 
                         </div>
@@ -60,14 +66,15 @@
 
                         <div class="ui stackable two column padded divided inverted black grid">
                             <div class='four wide column'>
-                                
+
                                 <h3 style="font-family:  'Montserrat', sans-serif;">Enter RAM Start Address</h3>
                             </div>
 
                             <div class=' column'>
                                 <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
-                                min="0" type="number" id="ramAddrField" placeholder="Enter RAM Starting Address " required>
-                                
+                                    min="0" type="number" id="ramAddrField" placeholder="Enter RAM Starting Address "
+                                    required>
+
                             </div>
 
                         </div>
@@ -76,13 +83,14 @@
                         <br>
                         <div class="ui stackable two column padded divided inverted black grid">
                             <div class='four wide column'>
-                                
+
                                 <h3 style="font-family:  'Montserrat', sans-serif;">Data to be Transmitted</h3>
                             </div>
 
                             <div class=' column'>
                                 <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
-                                     type="text" id="dataTransferDataField" placeholder="Enter data for transmission " required>
+                                    type="text" id="dataTransferDataField" placeholder="Enter data for transmission "
+                                    required>
                             </div>
 
 
@@ -103,12 +111,13 @@
                 <div class="column">
                     <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
                         Generated Snippet</h1>
-                        <br>
-                    
-                        <div class="ui inverted left aligned segment" >
-                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui  header" id='transferSnippet'></h4>
-                        </div>
-                        
+                    <br>
+
+                    <div class="ui inverted left aligned segment">
+                        <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui  header"
+                            id='transferSnippet'></h4>
+                    </div>
+
                 </div>
 
             </div>
@@ -116,8 +125,10 @@
         </div>
 
     </section>
+    <footer style="color: white; text-align: center;margin-top: 7.6%;;"> <strong>Contributions Welcomed <a
+                href="https://github.com/Yuthish/8051ed">@ github</a> <br> Copyright © 2021, Yuthirshta Prasad T
+            </i> </strong> </footer>
 
-    
 
 
     <script type="text/javascript" src="generator.js">
