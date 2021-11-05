@@ -1,45 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Delay Generation</title>
 </head>
-<body>
-    <form id='timerDelayForm'>
 
-        <label for="timers">Choose Timer</label>
-        <select id="timerField" name='timers' required>
-            <option selected disabled value="">---Select Timer---</option>
-            <option value="0">TIMER 0</option>
-            <option value="1">TIMER 1</option>
-        </select>
+<body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
+    <br>
+    <section>
+        <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">Delay Generation
+        </h1>
         <br>
-
-        <label for="modes">Choose Mode</label>
-        <select id="modeField" name='modes' required>
-            <option selected disabled value="">---Select Mode---</option>
-            <option value="1">MODE 1</option>
-            <option value="2">MODE 2</option>
-        </select>
         <br>
+        <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
 
-        <label for="delay">Delay (in ms)</label>
-        <input type="number" id="delayField" placeholder="Enter delay required" required>
+            <div class="ui stackable two column  divided inverted black grid" >
 
-        <input type="button" id="timerGenerateButton" value="Generate"
-            onclick="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)">
-        
+                <div class="column ">
 
-    </form>
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                        Generator</h1>
+                    <br>
 
-    <h1 id='TimerDelay'></h1>
+                    <form class="ui inverted  form" id='timerDelayForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='four wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Choose Timer</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
+                                    id="timerField" name='timers' required>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
+                                        disabled value="">---Select Timer---</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="0">TIMER 0</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="1">TIMER 1</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+
+                        <br>
+                        <br>
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='four wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Choose Mode</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
+                                    id="modeField" name='modes' required>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
+                                        disabled value=""><strong>---Select Mode---</strong></option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="1">MODE 1</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="2">MODE 2</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='four wide column'>
+                                
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Delay (in ms)</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
+                                    min="0" type="number" id="delayField" placeholder="Enter delay required" required>
+                            </div>
+
+
+                        </div>
+
+                        <div class="ui inverted center aligned segment">
+                            <input class="ui linkedin center compact  button" type="button" id="timerGenerateButton"
+                                value="Generate"
+                                onclick="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)">
+                        </div>
+
+                        <!-- <button type="submit" d="timerGenerateButton" value="Generate" onsubmit="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)"></button> -->
+
+                    </form>
+
+                </div>
+
+                <div class="column">
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                        Generated Snippet</h1>
+                        <br>
+                    
+                        <div class="ui inverted left aligned segment" >
+                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui  header" id='TimerDelay'></h4>
+                        </div>
+                        
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
     
+
 
     <script type="text/javascript" src="generator.js">
 
 
     </script>
 </body>
+
 </html>
