@@ -25,36 +25,35 @@ function timerDelay(timer, mode, delayInMilliSeconds) {
     
 
     if (mode === 1) {
-        delay = `ORG 0000H                                                                      <br>              
-                MOV TMOD,#${TMOD}H                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp ; Timer ${timer} Mode 1                 <br>
-                HERE:MOV TH${timer},#${TH}B                                                     <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp     MOV TL${timer},#${TL}B                                                          <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp     ACALL DELAY                                                                     <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp     SJMP HERE                                                                       <br>
-                                                                                                <br>
-                                                                                                <br>
-                DELAY:SETB TR${timer}                   &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp  ; Delay Subroutine                    <br>
-                AGAIN:JNB TF${timer},AGAIN                                                      <br>       
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CLR TR${timer}                                                            <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp CLR TF${timer}                                                            <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp RET                                                                       <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp END `
+        delay = `                                           ORG 0000H                                                                                                                                                                                           <br>              
+                                                            MOV TMOD,#${TMOD}H              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp ; Timer ${timer} Mode 1                      <br>
+                                                            HERE:MOV TH${timer},#${TH}B                                                                                                                                                                         <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp              MOV TL${timer},#${TL}B                                                                                                                                                                         <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp              ACALL DELAY                                                                                                                                                                                    <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp              SJMP HERE                                                                                                                                                                                      <br>
+                                                                                                                                                                                                                                                                <br> <br>
+                    
+                                                            DELAY:SETB TR${timer}           &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp  ; Delay Subroutine                          <br>
+                                                            AGAIN:JNB TF${timer},AGAIN                                                                                                                                                                          <br>       
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TR${timer}                                                                                                                                                                                <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TF${timer}                                                                                                                                                                                <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         RET                                                                                                                                                                                           <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         END `
         
     }else{
 
-    delay =`ORG 0000H                                                                                   <br>
-            MOV TMOD,#${TMOD}H                          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp  ; Timer ${timer} Mode 2 Auto reload Mode          <br>
-            MOV TH${timer},#${TH}B                                                                      <br>
-                                                                                                        <br>
-            HERE:ACALL DELAY                                                                            <br>
-                 SJMP HERE                                                                              <br>
-                                                                                                        <br>
-            DELAY:SETB TR${timer}                       &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp   ; Delay Subroutine                              <br>  
-            AGAIN:JNB TF${timer},AGAIN                                                                  <br>
-                  CLR TR${timer}                                                                        <br>
-                  CLR TF${timer}                                                                        <br>
-                  RET                                                                                   <br>
-                  END`                                                                                  
+    delay =`                                                ORG 0000H                                                                                                                                                                                           <br>
+                                                            MOV TMOD,#${TMOD}H              &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp  ; Timer ${timer} Mode 2 Auto reload Mode    <br>
+                                                            MOV TH${timer},#${TH}B                                                                                                                                                                              <br>
+                                                            HERE:ACALL DELAY                                                                                                                                                                                    <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         SJMP HERE                                                                                                                                                                                           <br>
+                                                                                                                                                                                                                                                                <br><br>
+                                                            DELAY:SETB TR${timer}           &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp   ; Delay Subroutine                         <br>  
+                                                            AGAIN:JNB TF${timer},AGAIN                                                                                                                                                                          <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TR${timer}                                                                                                                                                                                <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TF${timer}                                                                                                                                                                                <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         RET                                                                                                                                                                                           <br>
+                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         END`                                                                                  
     }
     
     }
