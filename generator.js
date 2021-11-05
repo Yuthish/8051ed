@@ -60,12 +60,12 @@ function timerDelay(timer, mode, delayInMilliSeconds) {
 
 }
 
-function serialCommunicationTransmitting(baudRate, data) {
+function serialCommunicationTxd(baudRate, data) {
 
     counter = data.length
 
     if (baudRate === 19200) {
-        txd = `                             ORG 0000H
+        Txd = `                             ORG 0000H
                                             MAIN: MOV DPTR,#MYDATA
                                             MOV TMOD,#20H                   ; Timer 1 Mode 2 
                                             MOV TH1,#-3                     ; 9600 Baud Rate 
@@ -88,14 +88,14 @@ function serialCommunicationTransmitting(baudRate, data) {
                                             
                                             MYDATA: DB '${data}'
                                             END`
-            return txd;
+            return Txd;
 
     } else {
         TH1 = -(28800 / (baudRate))
-        txd = `                                 ORG 0000H
+        Txd = `                                 ORG 0000H
                                                 MAIN: MOV DPTR,#MYDATA
                                                       MOV TMOD,#20H             ; Timer 1 Mode 2 
-                                                      MOV TH1,#${TH1}
+                                                      MOV TH1,#${TH1}           ; ${baudRate} Baud Rate
                                                       MOV SCON,#50H             ; Serial Mode 1 REN Enabled
                                                       SETB TR1
                                                       MOV R1,#${counter}
@@ -112,12 +112,52 @@ function serialCommunicationTransmitting(baudRate, data) {
                                                     
                                                 MYDATA: DB '${data}'
                                                 END`
-        return txd;
+        return Txd;
     }
     
 
 }
 
+function serialCommunicationRxd(baudRate,receivingPort) {
+    if (baudRate === 19200) {
+        Rxd = `                             ORG 0000H
+                                            MOV TMOD,#20H                   ; Timer 1 Mode 2 
+                                            MOV TH1,#-3                     ; 9600 Baud Rate 
+                                            MOV A,PCON
+                                            SETB ACC.7                      ; Doubling Baud Rate using PCON Register (SMOD = 1)
+                                            MOV PCON,A
+                                            MOV SCON,#50H                   ; Serial Mode 1 REN Enabled
+                                            SETB TR1
+                                            
+                                            HERE:JNB RI,HERE
+                                                 MOV A,SBUF
+                                                 MOV ${receivingPort},A
+                                                 CLR RI
+                                                 SJMP HERE
+                                           
+                                            END`
+            return Rxd;
+
+    } else {
+        TH1 = -(28800 / (baudRate))
+        Rxd = `                                 ORG 0000H
+                                    
+                                                MOV TMOD,#20H               ; Timer 1 Mode 2 
+                                                MOV TH1,#${TH1}             ; ${baudRate} Baud Rate
+                                                MOV SCON,#50H               ; Serial Mode 1 REN Enabled
+                                                SETB TR1
+                        
+                                                HERE:JNB RI,HERE
+                                                     MOV A,SBUF
+                                                     MOV ${receivingPort},A
+                                                     CLR RI
+                                                     SJMP HERE
+ 
+                                                END`
+    }
+    return Rxd
+
+}
 
 
 
