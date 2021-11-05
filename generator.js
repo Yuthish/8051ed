@@ -159,7 +159,28 @@ function serialCommunicationRxd(baudRate,receivingPort) {
 
 }
 
+function romToRam(romStartAddr,ramStartAddr,data){
+    counter = data.length
+    transfer = `    ORG 0000H
+                    MOV DPTR,#${romStartAddr}H              ; ROM Starting Address
+                    MOV R1,#${counter}
+                    MOV R0,#${ramStartAddr}H                ; RAM Starting Address
 
+                    MAIN:CLR A
+                         MOVC A,@A+DPTR
+                         MOV @R0,A
+                         INC DPTR
+                         INC R0
+                         DJNZ R1,MAIN   
+                    HERE:SJMP HERE     
+                    
+                    ORG ${romStartAddr}H
+                    DB '${data}'
+                    END`
+
+    return transfer
+
+}
 
 
 
