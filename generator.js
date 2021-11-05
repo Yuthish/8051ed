@@ -22,35 +22,38 @@ function timerDelay(timer, mode, delayInMilliSeconds) {
         TL = timerValue.slice(8, 16)
 
         if (mode === 1) {
-            delay = `                                           ORG 0000H                                                                                                                                                                                           <br>              
-                                                                MOV TMOD,#${TMOD}H              &nbsp &nbsp ; Timer ${timer} Mode 1                      <br>
-                                                                HERE:MOV TH${timer},#${TH}B                                                                                                                                                                         <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp              MOV TL${timer},#${TL}B                                                                                                                                                                         <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp              ACALL DELAY                                                                                                                                                                                    <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp              SJMP HERE                                                                                                                                                                                      <br>
-                                                                                                                                                                                                                                                                    <br> <br>
-                        
-                                                                DELAY:SETB TR${timer}           &nbsp &nbsp  ; Delay Subroutine                          <br>
-                                                                AGAIN:JNB TF${timer},AGAIN                                                                                                                                                                          <br>       
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TR${timer}                                                                                                                                                                                <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TF${timer}                                                                                                                                                                                <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         RET                                                                                                                                                                                           <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         END `
+            delay = `   ORG 0000H                     <br> <br>              
+                        ; Timer ${timer} Mode 1       <br>
+                        MOV TMOD,#${TMOD}H            <br>
+                        HERE:MOV TH${timer},#${TH}B   <br>
+                             MOV TL${timer},#${TL}B   <br>
+                             ACALL DELAY              <br>
+                             SJMP HERE                <br><br>
+                                                                                                            
+                        ; Delay Subroutine            <br>
+                        DELAY:SETB TR${timer}         <br>
+                        AGAIN:JNB TF${timer},AGAIN    <br>       
+                              CLR TR${timer}          <br>
+                              CLR TF${timer}          <br>
+                              RET                     <br>
+                              END `
 
         } else if (mode === 2) {
 
-            delay = `                                           ORG 0000H                                                                                                                                                                                           <br>
-                                                                MOV TMOD,#${TMOD}H  &nbsp &nbsp                ; Timer ${timer} Mode 2 Auto reload Mode    <br>
-                                                                MOV TH${timer},#${TH}B                                                                                                                                                                              <br>
-                                                                HERE:ACALL DELAY                                                                                                                                                                                    <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         SJMP HERE                                                                                                                                                                                           <br>
-                                                                                                                                                                                                                                                                    <br><br>
-                                                                DELAY:SETB TR${timer} &nbsp &nbsp   ; Delay Subroutine                         <br>  
-                                                                AGAIN:JNB TF${timer},AGAIN                                                                                                                                                                          <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TR${timer}                                                                                                                                                                                <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         CLR TF${timer}                                                                                                                                                                                <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         RET                                                                                                                                                                                           <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp         END`
+            delay = `   ORG 0000H                                   <br> <br>                                                                                                                                                   
+                        ; Timer ${timer} Mode 2 Auto reload Mode    <br>                                                                                                                                                   
+                        MOV TMOD,#${TMOD}H                          <br>                                                                                                                                                   
+                        MOV TH${timer},#${TH}B                      <br>                                                                                                                                                   
+                        HERE:ACALL DELAY                            <br>                                                                                                                                                   
+                             SJMP HERE                              <br> <br?                                                                                                                                                  
+                                                                                                                
+                         ; Delay Subroutine                         <br>                                                                                                                                                                                                                                                                                              <br><br>
+                         DELAY:SETB TR${timer}                      <br>                                                                                                                                                   
+                         AGAIN:JNB TF${timer},AGAIN                 <br>                                                                                                                                                   
+                               CLR TR${timer}                       <br>                                                                                                                                                   
+                               CLR TF${timer}                       <br>                                                                                                                                                   
+                               RET                                  <br>                                                                                                                                                   
+                               END`
         }
 
     }
@@ -64,123 +67,139 @@ function serialCommunicationTxd(baudRate, data) {
 
     counter = data.length
 
-    if (baudRate === 19200) {
-        Txd = `                             ORG 0000H
-                                            MAIN: MOV DPTR,#MYDATA
-                                            MOV TMOD,#20H                   ; Timer 1 Mode 2 
-                                            MOV TH1,#-3                     ; 9600 Baud Rate 
-                                            MOV A,PCON
-                                            SETB ACC.7                      ; Doubling Baud Rate using PCON Register (SMOD = 1)
-                                            MOV PCON,A
-                                            MOV SCON,#50H                   ; Serial Mode 1 REN Enabled
-                                            SETB TR1
-                                            MOV R1,#${counter}
+    if (baudRate === "19200") {
+        Txd = `  ORG 0000H                                            <br>
+                 MAIN: MOV DPTR,#MYDATA                               <br> <br> 
+                 ; Timer 1 Mode 2                                     <br>    
+                 MOV TMOD,#20H                                        <br> <br>
+                 ; 9600 Baud Rate                                     <br>               
+                 MOV TH1,#-3                                          <br> <br>
+                 ; Doubling Baud Rate using PCON Register (SMOD = 1)  <br>    
+                 MOV A,PCON                                           <br>
+                 SETB ACC.7                                           <br>
+                 MOV PCON,A                                           <br> <br>
+                 ; Serial Mode 1 REN Enabled                          <br>
+                 MOV SCON,#50H                                        <br>                
+                 SETB TR1                                             <br>
+                 MOV R1,#${counter}                                   <br> <br>
 
-                                            AGAIN:CLR A
-                                                  MOVC A,@A+DPTR
-                                                  MOV SBUF,A
+                AGAIN:CLR A                                           <br>
+                      MOVC A,@A+DPTR                                  <br>
+                      MOV SBUF,A                                      <br> <br>
 
-                                            HERE:JNB TI,HERE
-                                                 CLR TI
-                                                 INC DPTR
-                                                 DJNZ R1,AGAIN
-                                                 SJMP MAIN
-                                            
-                                            MYDATA: DB '${data}'
-                                            END`
-            return Txd;
+                HERE:JNB TI,HERE                                      <br>        
+                     CLR TI                                           <br>
+                     INC DPTR                                         <br>
+                     DJNZ R1,AGAIN                                    <br>
+                     SJMP MAIN                                        <br> <br>
 
+                MYDATA: DB '${data}'                                  <br>
+                END`                                               
+           
     } else {
         TH1 = -(28800 / (baudRate))
-        Txd = `                                 ORG 0000H
-                                                MAIN: MOV DPTR,#MYDATA
-                                                      MOV TMOD,#20H             ; Timer 1 Mode 2 
-                                                      MOV TH1,#${TH1}           ; ${baudRate} Baud Rate
-                                                      MOV SCON,#50H             ; Serial Mode 1 REN Enabled
-                                                      SETB TR1
-                                                      MOV R1,#${counter}
+        Txd = ` ORG 0000H                          <br>
+                MAIN: MOV DPTR,#MYDATA             <br> <br> 
+                      ; Timer 1 Mode 2             <br>
+                      MOV TMOD,#20H                <br> <br>
+                      ; ${baudRate} Baud Rate      <br>
+                      MOV TH1,#${TH1}              <br> <br>
+                      ; Serial Mode 1 REN Enabled  <br>
+                      MOV SCON,#50H                <br>          
+                      SETB TR1                     <br>
+                      MOV R1,#${counter}           <br> <br>
                             
-                                                      AGAIN:CLR A
-                                                            MOVC A,@A+DPTR
-                                                            MOV SBUF,A
+                AGAIN:CLR A                        <br>
+                      MOVC A,@A+DPTR               <br>
+                      MOV SBUF,A                   <br> <br>
 
-                                                      HERE:JNB TI,HERE
-                                                           CLR TI
-                                                           INC DPTR
-                                                           DJNZ R1,AGAIN
-                                                           SJMP MAIN
+                HERE:JNB TI,HERE                   <br>    
+                     CLR TI                        <br>    
+                     INC DPTR                      <br>   
+                     DJNZ R1,AGAIN                 <br>
+                     SJMP MAIN                     <br> <br>
                                                     
-                                                MYDATA: DB '${data}'
-                                                END`
-        return Txd;
+                MYDATA: DB "${data}"               <br>        
+                END`
+        
     }
+    document.getElementById("txdSnippet").innerHTML = Txd
     
 
 }
 
 function serialCommunicationRxd(baudRate,receivingPort) {
-    if (baudRate === 19200) {
-        Rxd = `                             ORG 0000H
-                                            MOV TMOD,#20H                   ; Timer 1 Mode 2 
-                                            MOV TH1,#-3                     ; 9600 Baud Rate 
-                                            MOV A,PCON
-                                            SETB ACC.7                      ; Doubling Baud Rate using PCON Register (SMOD = 1)
-                                            MOV PCON,A
-                                            MOV SCON,#50H                   ; Serial Mode 1 REN Enabled
-                                            SETB TR1
-                                            
-                                            HERE:JNB RI,HERE
-                                                 MOV A,SBUF
-                                                 MOV ${receivingPort},A
-                                                 CLR RI
-                                                 SJMP HERE
-                                           
-                                            END`
-            return Rxd;
+    if (baudRate === "19200") {
+        Rxd = `                             ORG 0000H                                                <br> <br> 
+                                            ; Timer 1 Mode 2                                         <br>
+                                            MOV TMOD,#20H                                            <br> <br>                            
+                                            ; 9600 Baud Rate                                         <br>                                    
+                                            MOV TH1,#-3                                              <br> <br>                           
+                                            ; Doubling Baud Rate using PCON Register (SMOD = 1)      <br>                        
+                                            MOV A,PCON                                               <br>                            
+                                            SETB ACC.7                                               <br>                                            
+                                            MOV PCON,A                                               <br> <br>                       
+                                            ; Serial Mode 1 REN Enabled                              <br>                                        
+                                            MOV SCON,#50H                                            <br>                                        
+                                            SETB TR1                                                 <br> <br>                            
+
+                                            HERE:JNB RI,HERE                                         <br>                            
+                                                 MOV A,SBUF                                          <br>                                    
+                                                 MOV ${receivingPort},A                              <br>                                        
+                                                 CLR RI                                              <br>                                                
+                                                 SJMP HERE                                           <br>                                                
+
+                                            END`                                                                                        
+            
 
     } else {
         TH1 = -(28800 / (baudRate))
-        Rxd = `                                 ORG 0000H
-                                    
-                                                MOV TMOD,#20H               ; Timer 1 Mode 2 
-                                                MOV TH1,#${TH1}             ; ${baudRate} Baud Rate
-                                                MOV SCON,#50H               ; Serial Mode 1 REN Enabled
-                                                SETB TR1
-                        
-                                                HERE:JNB RI,HERE
-                                                     MOV A,SBUF
-                                                     MOV ${receivingPort},A
-                                                     CLR RI
-                                                     SJMP HERE
- 
-                                                END`
+        Rxd = `                                 ORG 0000H                       <br> <br>                                          
+                                                ; Timer 1 Mode 2                <br>                                                      
+                                                MOV TMOD,#20H                   <br> <br>                                                  
+                                                ; ${baudRate} Baud Rate         <br>                                                  
+                                                MOV TH1,#${TH1}                 <br> <br>                                                  
+                                                ; Serial Mode 1 REN Enabled     <br>                                                          
+                                                MOV SCON,#50H                   <br>                                                          
+                                                SETB TR1                        <br> <br>                                                     
+                                                                                          
+                                                HERE:JNB RI,HERE                <br>                                      
+                                                     MOV A,SBUF                 <br>                                                  
+                                                     MOV ${receivingPort},A     <br>                                                          
+                                                     CLR RI                     <br>                                                  
+                                                     SJMP HERE                  <br>                                              
+
+                                                END`                                                                                                            
     }
-    return Rxd
+    document.getElementById("rxdSnippet").innerHTML = Rxd
 
 }
 
 function romToRam(romStartAddr,ramStartAddr,data){
     counter = data.length
-    transfer = `    ORG 0000H
-                    MOV DPTR,#${romStartAddr}H              ; ROM Starting Address
-                    MOV R1,#${counter}
-                    MOV R0,#${ramStartAddr}H                ; RAM Starting Address
+    transfer = `    ORG 0000H                         <br> <br>                                      
+                    ; ROM Starting Address            <br>                                          
+                    MOV DPTR,#${romStartAddr}H        <br>                                                                
+                    MOV R1,#${counter}                <br> <br>                                 
+                    ; RAM Starting Address            <br>                                          
+                    MOV R0,#${ramStartAddr}H          <br> <br>                                                                             
 
-                    MAIN:CLR A
-                         MOVC A,@A+DPTR
-                         MOV @R0,A
-                         INC DPTR
-                         INC R0
-                         DJNZ R1,MAIN   
-                    HERE:SJMP HERE     
+                    MAIN:CLR A                        <br>                                  
+                         MOVC A,@A+DPTR               <br>                                                  
+                         MOV @R0,A                    <br>                                          
+                         INC DPTR                     <br>                                                          
+                         INC R0                       <br>                                                                  
+                         DJNZ R1,MAIN                 <br>                                           
+                    HERE:SJMP HERE                    <br> <br>                                        
                     
-                    ORG ${romStartAddr}H
-                    DB '${data}'
-                    END`
+                    ORG ${romStartAddr}H              <br>                                                              
+                    DB '${data}'                      <br>                                  
+                    END`                                                                
 
     return transfer
 
 }
+
 
 
 

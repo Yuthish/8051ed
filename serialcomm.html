@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>Seial Communication</title>
+</head>
+
+<body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
+    <br>
+    <section class='transmission'>
+        <h1 style="font-family:  'Montserrat', sans-serif;color:white;" class="ui center aligned header">Serial Communication Generator
+        </h1>
+        <br>
+        <br>
+        <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
+
+            <div class="ui stackable two column  divided inverted black grid" >
+
+                <div class="column ">
+
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                       Txd Generator</h1>
+                    <br>
+
+                    <form class="ui inverted  form" id='txdForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='five wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Choose Baud Rate</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
+                                    id="baudRateFieldTxd"  required>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
+                                        disabled value="">---Select Baud Rate---</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="1200">1200</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="2400">2400</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="4800">4800</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="9600">9600</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="19200">19200</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+
+                        <br>
+                        <br>
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='five wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Data to be Transmitted</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
+                                 type="text" id="dataField" placeholder="Enter data for transmission " required>
+                            </div>
+
+                        </div>
+
+                       
+                       
+                        <div class="ui inverted center aligned segment">
+                            <input class="ui linkedin center compact  button" type="button" id="txdGenerateButton"
+                                value="Generate"
+                                onclick="serialCommunicationTxd(document.getElementById('baudRateFieldTxd').value,document.getElementById('dataField').value)">
+                        </div>
+
+                        <!-- <button type="submit" d="timerGenerateButton" value="Generate" onsubmit="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)"></button> -->
+
+                    </form>
+
+                </div>
+
+                <div class="column">
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                        Generated Snippet</h1>
+                        <br>
+                    
+                        <div class="ui inverted left aligned segment" >
+                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui header" id='txdSnippet'></h4>
+                        </div>
+                        
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class='receiving'>
+        
+        <br>
+        <br>
+        <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
+
+            <div class="ui stackable two column  divided inverted black grid" >
+
+                <div class="column ">
+
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                       Rxd Generator</h1>
+                    <br>
+
+                    <form class="ui inverted  form" id='rxdForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='five wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Choose Baud Rate</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
+                                    id="baudRateFieldRxd"  required>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
+                                        disabled value="">---Select Baud Rate---</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="1200">1200</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="2400">2400</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="4800">4800</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="9600">9600</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="19200">19200</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+
+
+                        <br>
+                        <br>
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='five wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Receiving Port</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <select style="font-family:  'Montserrat', sans-serif;font-weight: bolder; width: 100%;"
+                                    id="receivingPortFieldRxd"  required>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;" selected
+                                        disabled value="">---Select Receiving Port ---</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="P0">P0</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="P1">P1</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="P2">P2</option>
+                                    <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
+                                        value="P3">P3</option>
+                                    
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                       
+                       
+                        <div class="ui inverted center aligned segment">
+                            <input class="ui linkedin center compact  button" type="button" id="rxdGenerateButton"
+                                value="Generate"
+                                onclick="serialCommunicationRxd(document.getElementById('baudRateFieldRxd').value,document.getElementById('receivingPortFieldRxd').value)">
+                        </div>
+
+                        <!-- <button type="submit" d="timerGenerateButton" value="Generate" onsubmit="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)"></button> -->
+
+                    </form>
+
+                </div>
+
+                <div class="column">
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                        Generated Snippet</h1>
+                        <br>
+                    
+                        <div class="ui inverted left aligned segment" >
+                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui header" id='rxdSnippet'></h4>
+                        </div>
+                        
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+
+
+    <script type="text/javascript" src="generator.js">
+
+
+    </script>
+</body>
+
+</html>
