@@ -196,7 +196,7 @@ function romToRam(romStartAddr,ramStartAddr,data){
                     DB '${data}'                      <br>                                  
                     END`                                                                
 
-    return transfer
+    document.getElementById("transferSnippet").innerHTML = transfer
 
 }
 

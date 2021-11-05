@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <title>Seial Communication</title>
+    <title>Seial Communication Generation</title>
 </head>
 
 <body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
@@ -78,7 +78,7 @@
 
                             <div class=' column'>
                                 <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
-                                 type="text" id="dataField" placeholder="Enter data for transmission " required>
+                                 type="text" id="serialCommDataField" placeholder="Enter data for transmission " required>
                             </div>
 
                         </div>
@@ -88,7 +88,7 @@
                         <div class="ui inverted center aligned segment">
                             <input class="ui linkedin center compact  button" type="button" id="txdGenerateButton"
                                 value="Generate"
-                                onclick="serialCommunicationTxd(document.getElementById('baudRateFieldTxd').value,document.getElementById('dataField').value)">
+                                onclick="serialCommunicationTxd(document.getElementById('baudRateFieldTxd').value,document.getElementById('serialCommDataField').value)">
                         </div>
 
                         <!-- <button type="submit" d="timerGenerateButton" value="Generate" onsubmit="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)"></button> -->
@@ -181,7 +181,7 @@
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
                                         value="P2">P2</option>
                                     <option style="font-family:  'Montserrat', sans-serif;font-weight: bolder;"
-                                        value="P3">P3</option>
+                                        value="P3">P3 (Not Recommended)</option>
                                     
                                 </select>
 

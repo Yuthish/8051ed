@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <title>Data Transfer Generation</title>
+</head>
+
+<body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
+    <br>
+    <section>
+        <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">Data Transfer Generation
+        </h1>
+        <br>
+        <br>
+        <div class="ui inverted  aligned segment" style='width: 90%;margin-left: 5%;border-radius: 1%;'>
+
+            <div class="ui stackable two column  divided inverted black grid" >
+
+                <div class="column ">
+
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                        Generator</h1>
+                    <br>
+
+                    <form class="ui inverted  form" id='dataTransferForm' style="font-family:  'Montserrat', sans-serif;color:white;margin-left: 5%;">
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='four wide column'>
+                                <!-- <label for="timers">Choose Timer</label> -->
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Enter ROM Start Address</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
+                                    min="0" type="number" id="romAddrField" placeholder="Enter ROM Starting Address " required>
+                               
+                            </div>
+
+                        </div>
+
+
+
+                        <br>
+                        <br>
+
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='four wide column'>
+                                
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Enter RAM Start Address</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
+                                min="0" type="number" id="ramAddrField" placeholder="Enter RAM Starting Address " required>
+                                
+                            </div>
+
+                        </div>
+
+                        <br>
+                        <br>
+                        <div class="ui stackable two column padded divided inverted black grid">
+                            <div class='four wide column'>
+                                
+                                <h3 style="font-family:  'Montserrat', sans-serif;">Data to be Transmitted</h3>
+                            </div>
+
+                            <div class=' column'>
+                                <input style="font-family:  'Montserrat', sans-serif;font-weight: bolder;width: 100%;"
+                                     type="text" id="dataTransferDataField" placeholder="Enter data for transmission " required>
+                            </div>
+
+
+                        </div>
+
+                        <div class="ui inverted center aligned segment">
+                            <input class="ui linkedin center compact  button" type="button" id="timerGenerateButton"
+                                value="Generate"
+                                onclick="romToRam(document.getElementById('romAddrField').value,document.getElementById('ramAddrField').value,document.getElementById('dataTransferDataField').value)">
+                        </div>
+
+                        <!-- <button type="submit" d="timerGenerateButton" value="Generate" onsubmit="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)"></button> -->
+
+                    </form>
+
+                </div>
+
+                <div class="column">
+                    <h1 style="font-family:  'Montserrat', sans-serif;color:white" class="ui center aligned header">
+                        Generated Snippet</h1>
+                        <br>
+                    
+                        <div class="ui inverted left aligned segment" >
+                            <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui  header" id='transferSnippet'></h4>
+                        </div>
+                        
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    
+
+
+    <script type="text/javascript" src="generator.js">
+
+
+    </script>
+</body>
+
+</html>
