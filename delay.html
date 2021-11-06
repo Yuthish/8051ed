@@ -21,6 +21,46 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <title>Delay Generation</title>
+
+    <style>
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 140px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 150%;
+            left: 50%;
+            margin-left: -75px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
 </head>
 
 <body style="background-color: black;height: max-content;font-family:  'Montserrat', sans-serif;color:white;">
@@ -105,8 +145,8 @@
                         </div>
 
                         <div class="ui inverted center aligned segment">
-                            <input class="ui linkedin center compact  button" type="button" style="font-family:  'Montserrat', sans-serif;"
-                                value="Generate"
+                            <input class="ui linkedin center compact  button" type="button"
+                                style="font-family:  'Montserrat', sans-serif;" value="Generate"
                                 onclick="timerDelay(document.getElementById('timerField').value,document.getElementById('modeField').value,document.getElementById('delayField').value)">
                         </div>
 
@@ -121,10 +161,34 @@
                         Generated Snippet</h1>
                     <br>
 
-                    <div class="ui inverted left aligned segment">
+                    <div class="ui inverted left aligned  segment ">
                         <h4 style="font-family:  'Montserrat', sans-serif;color:white" class="ui  header"
                             id='TimerDelay'></h4>
+                            
+                        <div class="tooltip">
+                            <span id="delayCopyBtn"></span>
+                            
+                        </div>
+
+                        <script>
+                            function myFunction() {
+                                var copyText = document.getElementById("TimerDelay");
+                                var copiedCode = copyText.innerHTML.replaceAll("<br>","\n");
+                                navigator.clipboard.writeText(copiedCode);
+
+                                var tooltip = document.getElementById("myTooltip");
+                                tooltip.innerHTML = "Code Copied ";
+                            }
+
+                            function outFunc() {
+                                var tooltip = document.getElementById("myTooltip");
+                                tooltip.innerHTML = "Copy to clipboard";
+                            }
+                        </script>
+
+
                     </div>
+
 
                 </div>
 
