@@ -17,13 +17,13 @@
 - Reliable
 
 ## Working 🧰
-![image](https://user-images.githubusercontent.com/62014647/140593641-f00054db-6c4c-4d19-a7a5-d4797946a8fb.png)
+![image](https://user-images.githubusercontent.com/62014647/140604913-059811e5-4062-40f0-957a-43b5d7be4104.png)
 
-![image](https://user-images.githubusercontent.com/62014647/140593576-1a54a7c7-c73d-41bf-901b-6e2ecc56de80.png)
+![image](https://user-images.githubusercontent.com/62014647/140604938-70e43551-84fe-4e11-a2d2-61b213987458.png)
 
-![image](https://user-images.githubusercontent.com/62014647/140593553-0a9fd597-c29e-437f-83de-91c33d480698.png)
+![image](https://user-images.githubusercontent.com/62014647/140604957-207e2c49-3495-485a-9b11-33c1f3e844ea.png)
 
-![image](https://user-images.githubusercontent.com/62014647/140593599-51f1838b-ec62-4ce3-bf81-2b786a9e9550.png)
+![image](https://user-images.githubusercontent.com/62014647/140604966-8a6e8f9c-3d1d-4c12-9a3b-235084709869.png)
 
 ## Upcoming 🔨 
  - Interrupt Generators
