@@ -1,7 +1,7 @@
 function timerDelay(timer, mode, delayInMilliSeconds) {
     timer = parseInt(timer)
     mode = parseInt(mode)
-    delayInMilliSeconds = parseInt(delayInMilliSeconds)
+    delayInMilliSeconds = parseFloat(delayInMilliSeconds)
     let delay = ""
 
     if (timer === 0) {
@@ -12,7 +12,7 @@ function timerDelay(timer, mode, delayInMilliSeconds) {
 
     delayInMilliSeconds = Math.round((delayInMilliSeconds * 1000) / 1.085)
     timerValue = 65536 - delayInMilliSeconds
-
+    
     if (timerValue < 0) {
         delay = "Value Out Of Bound"
 
