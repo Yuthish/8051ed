@@ -1,6 +1,6 @@
 ---
 # 8051ed
-![image](https://user-images.githubusercontent.com/62014647/140594166-cc47b54e-a3da-4c7f-990c-4050867324aa.png)
+![image](https://user-images.githubusercontent.com/62014647/140594346-7b15aff5-e01c-4d45-956f-855d920b4f31.png)
 
 ---
 ### ***Website*** : **https://8051ed.netlify.app/**
